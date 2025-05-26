@@ -28,10 +28,15 @@ Consolidar os conhecimentos adquiridos sobre sincronização de tarefas com **mu
 
 ## 🛠️ Funcionalidades Obrigatórias  
 ✅ **Contagem de Usuários:** Controla o número de usuários ativos simulados por botões.
+
 ✅ **Semáforo de Contagem:** Utiliza `xSemaphoreCreateCounting()` para gerenciar o número de vagas disponíveis.
+
 ✅ **Semáforos Binários:** Emprega `xSemaphoreCreateBinary()` para sinalizar eventos de entrada, saída e reset de forma eficiente a partir das ISRs.
+
 ✅ **Mutex para Display:** Garante o acesso exclusivo ao display OLED utilizando `xSemaphoreCreateMutex()` para evitar conflitos de escrita.
+
 ✅ **Interrupção de Reset:** Implementa interrupção para o botão do joystick (Botão J) que zera a contagem de usuários.
+
 ✅ **Feedback Visual (LED RGB):** O LED RGB indica o estado de ocupação do espaço:
     * **Azul:** Nenhum usuário logado (Vago).
     * **Verde:** Usuários ativos (contagem de 0 a `MAX_USUARIOS - 2`).
@@ -40,12 +45,16 @@ Consolidar os conhecimentos adquiridos sobre sincronização de tarefas com **mu
 ✅ **Sinalização Sonora (Buzzer):**
     * **Beep Curto:** Emitido ao tentar entrar no sistema quando a capacidade máxima é atingida.
     * **Beep Duplo:** Gerado ao resetar a contagem de usuários.
+
 ✅ **Exibição no Display OLED:** Mensagens claras e contagem de usuários são exibidas no display 128x64 via I2C, mostrando o status atual do sistema.
+
 ✅ **Debounce de Botões:** Implementação de um debounce por software (baseado em tempo na ISR) para garantir que cada pressionamento de botão seja registrado como um único evento.
+
 ✅ **Arquitetura Multitarefas com FreeRTOS:** O sistema é estruturado em **três tarefas principais** para gerenciar as operações de:
     * **`vTaskEntrada()`:** Aumenta o número de usuários ativos.
     * **`vTaskSaida()`:** Reduz o número de usuários ativos.
     * **`vTaskReset()`:** Zera a contagem de usuários.
+
 ✅ **Configuração Centralizada de IRQ:** Utiliza uma única função de *callback* de interrupção global (`gpio_irq_handler`) para processar eventos de múltiplos botões.
 
 ---
