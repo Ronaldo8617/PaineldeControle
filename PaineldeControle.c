@@ -25,11 +25,11 @@
 #include "task.h"
 #include "semphr.h" // Para semáforos e mutexes
 
-// Libs customizadas (baseadas nos códigos que você me enviou)
+// Libs customizadas
 #include "lib/display_init.h" // Contém extern ssd, display(), etc.
-#include "lib/font.h"         // Necessário para a fonte (se ssd1306.h não o incluir)
+#include "lib/font.h"         // Necessário para a fonte 
 #include "lib/buzzer.h"      // Funções para controle do buzzer
-// A biblioteca 'lib/buttons.h' e 'lib/buttons.c' foram removidas.
+
 
 // --- Definições de Hardware (Pinos) --- //
 #define BOTAO_ENTRADA 5 // GPIO 5 para entrada de usuário
@@ -51,8 +51,6 @@
 #define OLED_HEIGHT   64
 
 // --- Variáveis Globais e Handles do FreeRTOS --- //
-// A instância 'ssd' é uma variável global definida em lib/display_init.c
-// e declarada como 'extern' em lib/display_init.h
 SemaphoreHandle_t xDisplayMutex;   // Mutex para proteger o acesso ao display
 SemaphoreHandle_t xUsuariosSem;    // Semáforo de contagem para usuários ativos
 SemaphoreHandle_t xResetSem;       // Semáforo binário para o evento de reset
@@ -62,7 +60,7 @@ SemaphoreHandle_t xSaidaSem;       // Semáforo binário para evento de saída
 // Variável para a contagem de usuários ativos
 volatile uint8_t g_num_usuarios_ativos = 0;
 // Variável para a capacidade máxima de usuários
-const uint8_t MAX_USUARIOS = 8; // Exemplo: Capacidade máxima de 8 usuários
+const uint8_t MAX_USUARIOS = 9; // Exemplo: Capacidade máxima de 8 usuários
 
 // --- Variáveis para Debounce --- //
 volatile uint32_t last_debounce_time_entrada = 0;
@@ -274,7 +272,6 @@ int main() {
     gpio_set_dir(BOTAO_RESET, GPIO_IN);
     gpio_pull_up(BOTAO_RESET);
 
-    // --- Configuração das interrupções com callback individual (como no exemplo) ---
     // Registra a gpio_irq_handler como a função de callback para BOTAO_ENTRADA.
     // Todas as outras interrupções GPIO também serão direcionadas para esta função.
     gpio_set_irq_enabled_with_callback(BOTAO_ENTRADA, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
@@ -312,7 +309,7 @@ int main() {
     xTaskCreate(vTaskEntrada, "Entrada", configMINIMAL_STACK_SIZE + 256, NULL, 3, NULL);  // Tarefa de entrada
     xTaskCreate(vTaskSaida, "Saida", configMINIMAL_STACK_SIZE + 256, NULL, 3, NULL);      // Tarefa de saída
     xTaskCreate(vTaskReset, "Reset", configMINIMAL_STACK_SIZE + 256, NULL, 4, NULL);      // Tarefa de reset (maior prioridade para reset rápido)
-    // A tarefa vTaskLedBuzzerDisplay FOI REMOVIDA, suas responsabilidades foram distribuídas.
+   
 
     // Garante que o feedback inicial esteja correto (todos vagos)
     g_num_usuarios_ativos = (uint8_t)uxSemaphoreGetCount(xUsuariosSem); // Deverá ser 0
