@@ -12,13 +12,9 @@
 ---
 
 ## 📹 Demonstração  
-[clique aqui para acessar o vídeo](https://drive.google.com/file/d/1KGhIHI-ZHLxwJsvF2xodwm_9o59Hkp7k/view?usp=drive_link)
- 
-Conteúdo do vídeo:  
-- Apresentação do projeto  
-- Demonstração da leitura de sensores analógicos (chuva e nível) 
-- Atuação em tempo real com LEDs RGB, buzzer, matriz WS2818B e OLED 
+[clique aqui para acessar o vídeo](https://youtu.be/rTBprKNLdj0)
 
+ 
 ---
 
 ## 🎯 Objetivo  
