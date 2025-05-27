@@ -69,8 +69,8 @@ Consolidar os conhecimentos adquiridos sobre sincronização de tarefas com **mu
 Para compilar o projeto, siga os passos abaixo no terminal, a partir do diretório raiz do repositório:
 
 ```bash
-git clone [https://github.com/Ronaldo8617/Tarefa6-F2.git](https://github.com/Ronaldo8617/Tarefa6-F2.git)
-cd Tarefa6-F2
+git clone https://github.com/Ronaldo8617/PaineldeControle.git)
+cd PaineldeControle
 mkdir build
 cd build
 cmake ..
