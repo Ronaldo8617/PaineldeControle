@@ -86,10 +86,10 @@ Manual: Conecte o RP2040 no modo BOOTSEL (segurando o botão BOOTSEL na placa en
 ```plaintext
 PaineldeControle/  
 ├── lib/  
-│   ├── font.h               # Fonte de bitmap para o display OLED  
-│   ├── ssd1306.c, h         # Driver de baixo nível para o display SSD1306 via I2C  
-│   ├── display_init.c, h    # Inicialização do display e gerenciamento da instância global 'ssd'  
-│   ├── buzzer.c, h          # Funções para controle do buzzer passivo via PWM  
+│   ├── font.h                
+│   ├── ssd1306.c, h          
+│   ├── display_init.c, h     
+│   ├── buzzer.c, h         
 │   ├── FreeRTOSConfig.h     # Arquivo de configuração do kernel FreeRTOS
 ├── CMakeLists.txt           # Configuração do projeto para o CMake
 ├── PaineldeControle.c       # Código principal contendo todas as tarefas, lógica de interrupções e hardware
